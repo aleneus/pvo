@@ -93,5 +93,5 @@ def run(name, func):
 
 main()
 
-# TODO: treatment task
 # TODO: call method
+# TODO: hidden fields (separate lection)
