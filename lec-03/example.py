@@ -90,6 +90,13 @@ def run(func):
     print()
 
 
+def ex_fields():
+    """Fields of person"""
+    p = Person(FEMALE, "Anna")
+    print(p.sex)
+    print(p.name)
+
+
 def ex_two_persons():
     """Two persons"""
     p1 = Person(MALE, "Ivan")
@@ -123,6 +130,7 @@ def ex_callable():
         print(p.health)
 
 
+run(ex_fields)
 run(ex_two_persons)
 run(ex_inheritance)
 run(ex_property)
