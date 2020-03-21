@@ -1,5 +1,4 @@
-"""Classes example."""
-
+"""Python classes introduction."""
 
 MALE = False
 FEMALE = True
@@ -16,14 +15,18 @@ class Person:
         if sex not in [MALE, FEMALE]:
             raise ValueError("Unknown sex")
 
-        self.sex = sex
+        self._sex = sex
+
+    def get_sex(self):
+        """Returns sex."""
+        return self._sex
+
+    sex = property(get_sex, set_sex, "Sex of person.")
 
     def __repr__(self):
         name = self.__repr_name()
         sex = self.__repr_sex()
-
-        s = "{} ({})".format(name, sex)
-        return s
+        return "{} ({})".format(name, sex)
 
     def __repr_name(self):
         if not self.name:
@@ -31,8 +34,7 @@ class Person:
         return self.name
 
     def __repr_sex(self):
-        sex = "M" if self.sex == MALE else "F"
-        return sex
+        return "M" if self.sex == MALE else "F"
 
 
 class Doctor(Person):
@@ -54,44 +56,74 @@ class Doctor(Person):
 
 class Patient(Person):
     """Patient represents the patient."""
-    pass
+    def __init__(self, sex, name=None, health=100):
+        super().__init__(sex, name)
+        self._health = health
+
+    def get_health(self):
+        """Returns health value."""
+        return self._health
+
+    def set_healph(self, value):
+        """Sets health value for the patient."""
+        if value > 100:
+            self._health = 100
+        else:
+            self._health = value
+
+    health = property(get_health, set_healph, "Health value")
 
 
-def example_1():
+class Treatment:
+    """Treatment represents the act of treatment."""
+    def __init__(self, strength=1):
+        self.strength = strength
+
+    def __call__(self, patient):
+        patient.health = patient.health + self.strength
+
+
+def run(func):
+    """Run example decorator."""
+    print("Example: {}".format(func.__doc__))
+    func()
+    print()
+
+
+def ex_two_persons():
+    """Two persons"""
     p1 = Person(MALE, "Ivan")
     print(p1)
     p2 = Person(FEMALE, "Alina")
     print(p2)
 
 
-def example_2():
+def ex_inheritance():
+    """Doctor and patient are persons"""
     d = Doctor(MALE, "Alex")
     print(d)
     p = Patient(FEMALE, "Nina")
     print(p)
 
 
-def example_3():
-    d = Doctor(MALE, "Alex")
+def ex_property():
+    """Property"""
+    d = Doctor(MALE, "Peter")
     d.spec = "Surgeon"
     print(d.spec)
 
 
-def main():
-    """Entry point."""
-    run("two persons", example_1)
-    run("doctor and patient are persons", example_2)
-    run("spec property", example_3)
+def ex_callable():
+    """Callable object"""
+    p = Patient(MALE, "Sergey", health=30)
+    t = Treatment(strength=26)
+
+    for i in range(4):
+        t(p)
+        print(p.health)
 
 
-def run(name, func):
-    """Runs example (decorator)."""
-    print("==== {} ====".format(name))
-    func()
-    print()
-
-
-main()
-
-# TODO: call method
-# TODO: hidden fields (separate lection)
+run(ex_two_persons)
+run(ex_inheritance)
+run(ex_property)
+run(ex_callable)
