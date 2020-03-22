@@ -217,7 +217,7 @@ FEMALE = 1
 
 просто возвращает значение поля `_sex`.
 
-Фра мент `sex = property(get_sex, set_sex, "Sex of person.")` делает
+Фрагмент `sex = property(get_sex, set_sex, "Sex of person.")` делает
 так, чтобы обращение к "полю" `sex` (не `_sex`!) для чтения вызывало
 бы метод `get_sex`, а обращение для записи - `set_sex`. Это свойство,
 `sex` без подчеркивания - свойство. Выглядит как поле, а скрывает за
@@ -262,19 +262,206 @@ Anna
 
 ## __repr__()
 
-Так себе результат. Что значит `true`? При чем тут пол? Давайте
+Так себе результат. Что значит `True`? При чем тут пол? Давайте
 улучшим представление объекта - его "representation".
+
+Добавим в класс ``Person``` еще три метода:
+
+```
+	def __repr__(self):
+		name = self.__repr_name()
+		sex = self.__repr_sex()
+		return "{} ({})".format(name, sex)
+
+	def __repr_name(self):
+		if not self.name:
+			return "Somebody"
+		return self.name
+
+	def __repr_sex(self):
+		return "M" if self.sex == MALE else "F"
+```
+
+и добавим пример:
+
+```
+def ex_two_persons():
+	"""Effect of __repr__ method"""
+	p1 = Person(MALE, "Ivan")
+	print(p1)
+```
+
+Результат его выполнения:
+
+```
+Example: Effect of __repr__ method
+Ivan (M)
+```
+
+В чем тут фокус? Дело в том, что функция `print(объект)` на самом деле
+вызывает метод `__repr__` объекта, который указан в качестве аргумента
+и печатает строку, которую возвращает этот метод.
+
+Вот здесь `return "{} ({})".format(name, sex)` мы конструируем эту
+строку. Круглые скобки обозначают место, в которое надо что-то
+подставить. А то, что надо подставить, перечисляется в аргументах
+функции `format`.
+
+Эта функция является методом класса `str`. Когда мы пишем какой-то
+текст в кавычках, то на самом деле мы создаем в этом месте объект
+класса строка и можем вызывать его методы через точку, например:
+`"{}+{}={}".format(1, 2, 3)`.
+
+Подумайте сами о вспомогательных методах `__repr_name(self)` и
+`__repr_sex(self)`. Я укажу только на то, что их имена начинаются с
+двух знаков подчеркивания. В Python это означает, что методы являются
+скрытыми, не предназначенными для вызова извне.
 
 ## Наследование
 
-## __call__()
+Ниже представлен код классов `Doctor` и `Patient`:
 
-## Всё - объект
+```
+class Doctor(Person):
+	"""Doctor represents the doctor."""
+	def __init__(self, sex, name):
+		super().__init__(sex, name)
+		self._spec = None
 
-## Домашнее задание
+	def set_spec(self, spec):
+		"""Sets speciality."""
+		self._spec = spec
 
-**TODO**: отношение "врач лечит пациента"
+	def get_spec(self):
+		"""Returns the speciality."""
+		return self._spec
 
-## Ссылки
+	spec = property(get_spec, set_spec, "Speciality")
 
-[Python](http://python.org)
+
+class Patient(Person):
+	"""Patient represents the patient."""
+	def __init__(self, sex, name=None, health=100):
+		super().__init__(sex, name)
+		self._health = health
+
+	def get_health(self):
+		"""Returns health value."""
+		return self._health
+
+	def set_healph(self, value):
+		"""Sets health value for the patient."""
+		if value > 100:
+			self._health = 100
+		else:
+			self._health = value
+
+	health = property(get_health, set_healph, "Health value")
+```
+
+Чтобы показать, что некоторый класс является наследником другого
+(родительского) класса, надо родительский класс указать в скобках,
+после имени определяемого класса, например: `Patient(Person)`.
+
+В методах `__init__` вы видите конструкцию:
+`super().__init__(...)`. Это вызов метода `__init__` родительского
+класса (суперкласса). Таким образом мы можем сначала выполнить
+конструктор родительского класса, а потом выполнить еще какие-то
+действия в дочернем классе.
+
+Еще прошу обратить внимание на метод `set_healph` у пациента. Он
+реализован так, чтобы уровень "здоровья" не был больше 100
+(процентов). Как в компьютерных играх.
+
+Пара примеров:
+
+```
+def ex_inheritance():
+	"""Doctor and patient are persons"""
+	d = Doctor(MALE, "Alex")
+	print(d)
+	p = Patient(FEMALE, "Nina")
+	print(p)
+
+
+def ex_property():
+	"""Property"""
+	d = Doctor(MALE, "Peter")
+	d.spec = "Surgeon"
+	print(d.spec)
+```
+
+Результат:
+
+```
+Example: Doctor and patient are persons
+Alex (M)
+Nina (F)
+
+Example: Property
+Surgeon
+```
+
+**ВАЖНО!** Все классы являются наследниками класса `Object`. На этом
+верхнем уровне определены некоторые специальные методы: `__init__`,
+`__repr__` и другие. Таким образом мы можем быть уверены, что эти
+методы есть у любого класса, даже если мы ничего для этого специально
+не делали.
+
+## Метод __call__()
+
+Важным таким встроенным методом является `__call__`. Посмотрим на
+класс "лечение":
+
+```
+class Treatment:
+	"""Treatment represents the act of treatment."""
+	def __init__(self, strength=1):
+		self.strength = strength
+
+	def __call__(self, patient):
+		patient.health = patient.health + self.strength
+```
+
+и пример его использования:
+
+```
+def ex_callable():
+	"""Callable object"""
+	p = Patient(MALE, "Sergey", health=30)
+	t = Treatment(strength=26)
+
+	for i in range(4):
+		t(p)
+		print(p.health)
+```
+
+Вывод:
+
+```
+Example: Callable object
+56
+82
+100
+100
+```
+
+Здесь `t = Treatment(strength=26)` на самом деле вызывается метод
+`__init__` класса "лечение". Конструктору передается значение "силы"
+лечения. Т.е. мы создаем настроенный определенным образом объект. В
+данном случае создается "лечение" определенной силы. Я писал, что это
+игрушечный пример. Не думайте об этом слишком сложно.
+
+А здесь `t(p)` на самом деле вызывается метод `__call__`. Объекты, у
+которых определен метод `__call__`, называются callable-объектами.
+
+Лечение применяется к пациенту. После этого здоровье пациента
+увеличивается в зависимости от силы лечения.
+
+## Функции
+
+На самом деле функции в Python - это объекты с методом
+`__call__`. Посмотрите внимательно на реализацию моей функции `run` -
+вы увидите, что я воспользовался этим знанием.
+
+Всего доброго!

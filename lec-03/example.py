@@ -98,11 +98,9 @@ def ex_fields():
 
 
 def ex_two_persons():
-    """Two persons"""
+    """Effect of __repr__ method"""
     p1 = Person(MALE, "Ivan")
     print(p1)
-    p2 = Person(FEMALE, "Alina")
-    print(p2)
 
 
 def ex_inheritance():
