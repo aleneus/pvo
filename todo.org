@@ -1,3 +1,4 @@
-* DONE Шаблоны для практических работ 1 и 2
-* TODO Черновик практической работы 1
-* TODO Черновик практической работы 2
+* DONE template for labs
+* DONE labs: draft for lab 1
+* TODO labs: draft for lab 2
+* TODO lecs: Add content about working with files
