@@ -3,4 +3,5 @@
 * DONE labs: draft for lab 2
 * DONE labs: add links to lab 2
 * DONE add lab about pylint
+* DONE new: lab for inheritance, composition and aggregation
 * TODO lecs: Add content about working with files
