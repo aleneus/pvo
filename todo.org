@@ -4,4 +4,8 @@
 * DONE labs: add links to lab 2
 * DONE add lab about pylint
 * DONE new: lab for inheritance, composition and aggregation
-* TODO lecs: Add content about working with files
+* DONE feat: working with files
+* TODO feat: working with files, advanced
+* TODO feat: exceptions
+* TODO feat: unitesting
+* TODO feat: strings
