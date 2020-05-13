@@ -6,6 +6,7 @@
 * DONE new: lab for inheritance, composition and aggregation
 * DONE feat: working with files
 * DONE feat: testing
+* DONE feat: exam work
 * TODO feat: working with files, advanced
 * TODO feat: exceptions
 * TODO feat: strings
