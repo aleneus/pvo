@@ -8,7 +8,7 @@
 ** DONE feat: working with files
 ** DONE feat: testing
 ** DONE feat: exam work
-** TODO feat: commonize project
+** DONE feat: commonize project
 ** TODO feat: working with files, advanced
 ** TODO feat: exceptions
 ** TODO feat: strings
