@@ -1,12 +1,17 @@
-* DONE template for labs
-* DONE labs: draft for lab 1
-* DONE labs: draft for lab 2
-* DONE labs: add links to lab 2
-* DONE add lab about pylint
-* DONE new: lab for inheritance, composition and aggregation
-* DONE feat: working with files
-* DONE feat: testing
-* DONE feat: exam work
-* TODO feat: working with files, advanced
-* TODO feat: exceptions
-* TODO feat: strings
+* 2019-20
+** DONE template for labs
+** DONE labs: draft for lab 1
+** DONE labs: draft for lab 2
+** DONE labs: add links to lab 2
+** DONE add lab about pylint
+** DONE new: lab for inheritance, composition and aggregation
+** DONE feat: working with files
+** DONE feat: testing
+** DONE feat: exam work
+** TODO feat: commonize project
+** TODO feat: working with files, advanced
+** TODO feat: exceptions
+** TODO feat: strings
+* 2020-21
+** TODO ref: remove old folder lab-03
+** TODO ref: remove old folder testing
