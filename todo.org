@@ -9,9 +9,10 @@
 ** DONE feat: testing
 ** DONE feat: exam work
 ** DONE feat: commonize project
+* 2020-21
+** DONE ref: remove old folder lab-03
+** DONE ref: remove old folder testing
 ** TODO feat: working with files, advanced
 ** TODO feat: exceptions
 ** TODO feat: strings
-* 2020-21
-** TODO ref: remove old folder lab-03
-** TODO ref: remove old folder testing
+** TODO feat: add patterns
