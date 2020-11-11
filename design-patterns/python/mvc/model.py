@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class BuildingModel:
     def open_db(self, file_name):
         self.conn = sqlite3.connect(file_name)

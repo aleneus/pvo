@@ -1,5 +1,5 @@
 class Wife:
-    """ Director 
+    """ Director
     """
     def __init__(self):
         self._builder = None
@@ -9,6 +9,7 @@ class Wife:
         self._builder.build_table()
         self._builder.build_shelf()
         self._builder.build_cooker()
+
 
 class Builder:
     """ Abstract builder
@@ -25,6 +26,7 @@ class Builder:
     def build_cooker(self):
         pass
 
+
 class Husband(Builder):
     """ Concrete builder
     """
@@ -39,6 +41,7 @@ class Husband(Builder):
     def build_cooker(self):
         pass
 
+
 class Worker(Builder):
     """ Concrete builder
     """
@@ -49,10 +52,11 @@ class Worker(Builder):
     def build_shelf(self):
         print("Worker build shelf")
         self.product.shelf = "Made by worker"
-        
+
     def build_cooker(self):
         print("Worker installed cooker")
         self.product.cooker = "Made by worker"
+
 
 class Kitcnen:
     """ Product
@@ -67,9 +71,11 @@ class Kitcnen:
         print("Shelf: ", self.shelf)
         print("Cooker: ", self.cooker)
 
-wife = Wife()
-husband = Husband()
-worker = Worker()
-wife.construct(worker)
-kitchen = worker.product
-kitchen.show()
+
+if __name__ == "__main__":
+    wife = Wife()
+    husband = Husband()
+    worker = Worker()
+    wife.construct(worker)
+    kitchen = worker.product
+    kitchen.show()

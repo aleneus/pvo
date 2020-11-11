@@ -1,9 +1,5 @@
-"""
-Strategy pattern example.
+"""Strategy pattern example."""
 
-"""
-
-# TODO: add complex activity in complex activity
 
 class Activity:
     """
@@ -18,25 +14,27 @@ class Activity:
         self.workers[work] = worker
 
     def set_default_worker(self, work, activity):
-        if not work in self.workers.keys():
+        if work not in self.workers.keys():
             self.set_worker(work, activity)
 
     def __call__(self):
         raise NotImplementedError
 
-    
+
 class OutputDigit(Activity):
     pass
+
 
 class DigitAsDigit(OutputDigit):
     def __init__(self, check_value=False):
         self.check_value = check_value
-    
+
     def __call__(self, x):
         if self.check_value and ((x > 9) or (x < 0)):
             print('Wrong number')
             return
         print(x, end='')
+
 
 class DigitAsText(OutputDigit):
     def __call__(self, x):
@@ -61,7 +59,8 @@ class DigitAsText(OutputDigit):
         else:
             word = 'nine'
         print(word, end=' ')
-    
+
+
 class OutputNumber(Activity):
     def __init__(self):
         super().__init__()
@@ -70,13 +69,14 @@ class OutputNumber(Activity):
     def __call__(self, n):
         digits = []
         while True:
-            digits.append(n%10)
+            digits.append(n % 10)
             n = n // 10
-            if n==0:
+            if n == 0:
                 break
         for d in reversed(digits):
             self.workers['output'](d)
         print()
+
 
 def main():
     out_num = OutputNumber()
@@ -85,6 +85,7 @@ def main():
     print()
     out_num.workers['output'] = DigitAsText()
     out_num(123)
+
 
 if __name__ == "__main__":
     main()

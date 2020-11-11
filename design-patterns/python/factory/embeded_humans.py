@@ -1,48 +1,53 @@
-# TODO: add descroption
-# TODO: add short docstrings for classes
-
 import random
+
 
 class Human:
     def repr(self):
         pass
 
+
 class Woman(Human):
     class Factory:
-        def fabricate():
+        @staticmethod
+        def create():
             return Woman()
-        fabricate = staticmethod(fabricate)
+
 
 class Man(Human):
     class Factory:
-        def fabricate():
+        @staticmethod
+        def create():
             return Man()
-        fabricate = staticmethod(fabricate)
+
 
 class Girl(Human):
     class Factory:
-        def fabricate():
+        @staticmethod
+        def create():
             return Girl()
-        fabricate = staticmethod(fabricate)
+
 
 class Boy(Human):
     class Factory:
-        def fabricate():
+        @staticmethod
+        def create():
             return Boy()
-        fabricate = staticmethod(fabricate)
+
 
 class HumanFactory:
     fabrics = {
-        'Man' : Man.Factory,
-        'Woman' : Woman.Factory,
-        'Girl' : Girl.Factory,
-        'Boy' : Boy.Factory,
+        'Man': Man.Factory,
+        'Woman': Woman.Factory,
+        'Girl': Girl.Factory,
+        'Boy': Boy.Factory,
     }
-    def fabricate(name):
+
+    @staticmethod
+    def create(name):
         if name not in HumanFactory.fabrics.keys():
             raise AttributeError('Wrong name of human')
-        return HumanFactory.fabrics[name].fabricate()
-    fabricate = staticmethod(fabricate)
+        return HumanFactory.fabrics[name].create()
+
 
 class Shop:
     def __init__(self):
@@ -54,6 +59,7 @@ class Shop:
     def show(self):
         print(self.humans)
 
+
 class ToolsShop(Shop):
     def generate_humans(self, number):
         names = ['Man', 'Woman', 'Boy', 'Girl']
@@ -63,12 +69,14 @@ class ToolsShop(Shop):
         for i in range(number):
             r = random.randint(0, 100)
             s = 0
-            for p, n in zip(ps,names): 
+            for p, n in zip(ps, names):
                 s += p
                 if r <= s:
-                    self.humans.append(f.fabricate(n))
+                    self.humans.append(f.create(n))
                     break
-    
-ts = ToolsShop()
-ts.generate_humans(50)
-ts.show()
+
+
+if __name__ == "__main__":
+    ts = ToolsShop()
+    ts.generate_humans(50)
+    ts.show()

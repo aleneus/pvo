@@ -1,6 +1,3 @@
-from model import *
-from view import *
-
 class BuildingController:
     def __init__(self, model=None, view=None):
         self.model = model

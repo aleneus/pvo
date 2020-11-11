@@ -1,12 +1,13 @@
-import cmd, argparse
+import cmd
+import argparse
 
-from model import *
-from view import *
-from controller import *
+from model import BuildingModel
+from view import BuildingTextView, BuildingHtmlView
+from controller import BuildingController
 
 
 class BuildingShell(cmd.Cmd):
-    intro = '\nWelcome to the Building shell. Type help or ? to list commands.\n'
+    intro = '\nWelcome to the Building shell!\n'
     prompt = 'building> '
 
     def do_quit(self, arg):
@@ -35,8 +36,7 @@ class BuildingShell(cmd.Cmd):
         controller.set_view(tv)
         controller.numbers_by_purpose(args[0])
 
-    def do_html_info(self, arg):
-        args = arg.split()
+    def do_html_info(self):
         controller.set_view(hv)
         controller.info()
 

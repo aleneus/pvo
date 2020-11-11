@@ -1,8 +1,10 @@
 from subprocess import call
 
+
 class BuildingView:
     def table(self, data):
         pass
+
 
 class BuildingTextView(BuildingView):
     def table(self, data):
@@ -13,13 +15,14 @@ class BuildingTextView(BuildingView):
             print()
         print()
 
+
 class BuildingHtmlView(BuildingView):
     def __init__(self, file_name):
         self.ofile = file_name
 
     def set_output_file(self, file_name):
         self.ofile = file_name
-    
+
     def table(self, data):
         with open(self.ofile, 'w') as f:
             f.write("""

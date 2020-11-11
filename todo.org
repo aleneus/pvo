@@ -13,6 +13,7 @@
 ** DONE ref: remove old folder lab-03
 ** DONE ref: remove old folder testing
 ** DONE feat: include design-patterns to here
+** DONE patterns: add spaces before classes definitions
 ** TODO ref: add contents to README.md
 ** TODO feat: working with files, advanced
 ** TODO feat: exceptions
