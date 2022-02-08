@@ -1,28 +1,35 @@
-#include <stdio.h>
 #include "test.h"
+#include <stdio.h>
 
-struct testr_t testErr(char *text) {
-	struct testr_t res = {1, text};
+struct testr_t
+testErr (char *text)
+{
+  struct testr_t res = { 1, text };
 
-	return res;
+  return res;
 }
 
-struct testr_t testOk() {
-	struct testr_t res = {0, ""};
+struct testr_t
+testOk ()
+{
+  struct testr_t res = { 0, "" };
 
-	return res;
+  return res;
 }
 
-void runTest(struct testr_t func(), char *name) {
-	struct testr_t res = func();
+void
+runTest (struct testr_t func (), char *name)
+{
+  struct testr_t res = func ();
 
-	printf("run %s: ", name);
+  printf ("run %s: ", name);
 
-	if (res.exitCode == 0) {
-		printf("OK\n");
+  if (res.exitCode == 0)
+    {
+      printf ("OK\n");
 
-		return;
-	}
+      return;
+    }
 
-	printf("FAIL: %s\n", res.err);
+  printf ("FAIL: %s\n", res.err);
 }
