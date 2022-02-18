@@ -11,9 +11,10 @@
 
 ## Маленькие задания
 
+* [Unit-тестирование](unittest/)
+* [Python: Классы](python-classes/)
 * [Python: Алгоритмические конструкции](python-algo/)
 * [Python: Структуры данных](python-data/)
-* [Python: Классы](python-classes/)
 * [Python: Файлы](python-files/)
 * [Python: Алгоритмические конструкции](python-algo/)
 * [Python: Качество исходного кода](task-linter/)
