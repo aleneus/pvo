@@ -20,4 +20,4 @@
 ## Ссылки
 
 * [Паттерны проектирования](https://refactoring.guru/images/content-public/announcement-en-1.svg?id=2b6bba0470947f2a60cdac20b809cf3d)
-* [Примеры на Python](https://github.com/aleneus/pvo/tree/master/design-patterns)
+* [Примеры на Python и Go](https://github.com/aleneus/pvo/tree/master/design-patterns)
